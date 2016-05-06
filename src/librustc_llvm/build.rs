@@ -68,6 +68,7 @@ fn main() {
         "arm",
         "aarch64",
         "amdgpu",
+        "avr",
         "mips",
         "powerpc",
         "systemz",
