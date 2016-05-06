@@ -354,6 +354,9 @@ declare_features! (
     /// Allows `extern "x86-interrupt" fn()`.
     (active, abi_x86_interrupt, "1.17.0", Some(40180), None),
 
+    /// Allows `extern "avr-interrupt" fn()`.
+    (active, abi_avr_interrupt, "1.18.0", Some(000), None),
+
     /// Allows overlapping impls of marker traits.
     (active, overlapping_marker_traits, "1.18.0", Some(29864), None),
 

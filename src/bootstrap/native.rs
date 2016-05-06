@@ -138,7 +138,7 @@ impl Step for Llvm {
         } else {
             match builder.config.llvm_experimental_targets {
                 Some(ref s) => s,
-                None => "",
+                None => "AVR",
             }
         };
 
