@@ -127,6 +127,12 @@ void LLVMRustPassManagerBuilderPopulateThinLTOPassManager(
 #define SUBTARGET_AARCH64
 #endif
 
+#ifdef LLVM_COMPONENT_AVR
+#define SUBTARGET_AVR SUBTARGET(AVR)
+#else
+#define SUBTARGET_AVR
+#endif
+
 #ifdef LLVM_COMPONENT_MIPS
 #define SUBTARGET_MIPS SUBTARGET(Mips)
 #else
@@ -173,6 +179,7 @@ void LLVMRustPassManagerBuilderPopulateThinLTOPassManager(
   SUBTARGET_X86                                                                \
   SUBTARGET_ARM                                                                \
   SUBTARGET_AARCH64                                                            \
+  SUBTARGET_AVR                                                                \
   SUBTARGET_MIPS                                                               \
   SUBTARGET_PPC                                                                \
   SUBTARGET_SYSTEMZ                                                            \
