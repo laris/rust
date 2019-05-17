@@ -141,7 +141,7 @@ impl Step for Llvm {
            .define("LLVM_TARGETS_TO_BUILD", llvm_targets)
            .define("LLVM_EXPERIMENTAL_TARGETS_TO_BUILD", llvm_exp_targets)
            .define("LLVM_INCLUDE_EXAMPLES", "OFF")
-           .define("LLVM_INCLUDE_TESTS", "OFF")
+           .define("LLVM_INCLUDE_TESTS", "ON")
            .define("LLVM_INCLUDE_DOCS", "OFF")
            .define("LLVM_INCLUDE_BENCHMARKS", "OFF")
            .define("LLVM_ENABLE_ZLIB", "OFF")
