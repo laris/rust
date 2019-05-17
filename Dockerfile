@@ -25,6 +25,9 @@ RUN /code/configure \
 
 RUN make
 
+# Symlink LLVM build directory for easy access.
+RUN ln -sf /build/build/x86_64-unknown-linux-gnu/llvm/ /build/llvm
+
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/ -P ./build/x86_64-unknown-linux-gnu/llvm/build/cmake_install.cmake
 
 RUN make install
