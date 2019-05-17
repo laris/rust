@@ -28,8 +28,13 @@ RUN make
 # Symlink LLVM build directory for easy access.
 RUN ln -sf /build/build/x86_64-unknown-linux-gnu/llvm/ /build/llvm
 
+# Expose the internal LLVM build directory (including llvm-lit) to the PATH.
+ENV PATH="/build/llvm/build/bin:${PATH}"
+
+# Install LLVM to the system.
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/ -P ./build/x86_64-unknown-linux-gnu/llvm/build/cmake_install.cmake
 
+# Install Rust to the system.
 RUN make install
 
 # Drop down to the regular user
