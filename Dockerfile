@@ -10,14 +10,7 @@ RUN useradd -m rustacean
 
 # Copy the code over, create an empty directory for builds.
 ADD . /code
-# RUN cd /code
 RUN mkdir /build && cd /build
-
-# symlink Rust build directory to the /build volume
-# RUN mkdir /build && ln -sf /build /code/build
-
-# Compile rust.
-# RUN /code/x.py build
 
 # Generate Makefile using settings suitable for an experimental compiler
 RUN /code/configure \
@@ -30,10 +23,12 @@ RUN /code/configure \
     --experimental-targets=AVR
 
 RUN make
+
+RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/ -P ./x86_64-unknown-linux-gnu/llvm/build/cmake_install.cmake
+
 RUN make install
 
 # Drop down to the regular user
 USER rustacean
 
-VOLUME /code
 VOLUME /build
