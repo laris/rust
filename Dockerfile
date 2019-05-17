@@ -8,9 +8,13 @@ RUN apt-get update && apt-get install -y build-essential cmake curl git python
 # Create a regular user.
 RUN useradd -m rustacean
 
+# Create a directory for build artifacts.
+RUN mkdir /build && chown rustacean:rustacean /build
+
+USER rustacean
+
 # Copy the code over, create an empty directory for builds.
 ADD . /code
-RUN mkdir /build
 WORKDIR /build
 
 # Generate Makefile using settings suitable for an experimental compiler
@@ -31,13 +35,14 @@ RUN ln -sf /build/build/x86_64-unknown-linux-gnu/llvm/ /build/llvm
 # Expose the internal LLVM build directory (including llvm-lit) to the PATH.
 ENV PATH="/build/llvm/build/bin:${PATH}"
 
+USER root
+
 # Install LLVM to the system.
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/ -P ./build/x86_64-unknown-linux-gnu/llvm/build/cmake_install.cmake
-
 # Install Rust to the system.
 RUN make install
 
-# Drop down to the regular user
 USER rustacean
+
 
 VOLUME /build
