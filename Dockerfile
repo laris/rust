@@ -10,7 +10,8 @@ RUN useradd -m rustacean
 
 # Copy the code over, create an empty directory for builds.
 ADD . /code
-RUN mkdir /build && cd /build
+RUN mkdir /build
+WORKDIR /build
 
 # Generate Makefile using settings suitable for an experimental compiler
 RUN /code/configure \
@@ -24,7 +25,7 @@ RUN /code/configure \
 
 RUN make
 
-RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/ -P ./x86_64-unknown-linux-gnu/llvm/build/cmake_install.cmake
+RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/ -P ./build/x86_64-unknown-linux-gnu/llvm/build/cmake_install.cmake
 
 RUN make install
 
