@@ -27,3 +27,7 @@
    script:
      - docker build -t avr-rust .
      - docker run avr-rust echo hello world
+
+     # Run the LLVM test suite.
+     - docker run avr-rust llvm-lit /code/src/llvm/test/CodeGen/AVR /code/src/llvm/test/MC/AVR
+
