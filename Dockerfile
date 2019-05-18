@@ -44,5 +44,3 @@ RUN make install
 
 USER rustacean
 
-
-VOLUME /build
