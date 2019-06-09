@@ -31,6 +31,11 @@
    script:
      - docker build -t avr-rust .
 
+ check_llvm:
+   stage: test
+   script:
+     - docker run -w /build/llvm/build avr-rust make check-llvm
+
  test_blink:
    stage: test
    script:
