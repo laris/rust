@@ -35,5 +35,7 @@ RUN make install
 # Drop down to the regular user
 USER rustacean
 
+RUN cargo install xargo
+
 VOLUME /code
 VOLUME /build
