@@ -22,8 +22,19 @@
  before_script:
    - docker info
 
+ stages:
+   - build
+   - test
+
  build:
    stage: build
    script:
      - docker build -t avr-rust .
-     - docker run avr-rust echo hello world
+
+ test_blink:
+   stage: test
+   script:
+     - git clone https://github.com/avr-rust/blink.git
+     # Compile the blink example in release mode.
+     - docker run -v ./blink:/blink-src -w /blink-src avr-rust xargo build --target avr-atmega328p --release
+
