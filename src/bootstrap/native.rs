@@ -144,7 +144,7 @@ impl Step for Llvm {
            .define("LLVM_TARGETS_TO_BUILD", llvm_targets)
            .define("LLVM_EXPERIMENTAL_TARGETS_TO_BUILD", llvm_exp_targets)
            .define("LLVM_INCLUDE_EXAMPLES", "OFF")
-           .define("LLVM_INCLUDE_TESTS", "OFF")
+           .define("LLVM_INCLUDE_TESTS", "ON")
            .define("LLVM_INCLUDE_DOCS", "OFF")
            .define("LLVM_INCLUDE_BENCHMARKS", "OFF")
            .define("LLVM_ENABLE_ZLIB", "OFF")
@@ -522,7 +522,7 @@ impl Step for Lld {
            .profile("Release")
            .env("LLVM_CONFIG_REAL", llvm_config)
            .define("LLVM_CONFIG_PATH", llvm_config_shim)
-           .define("LLVM_INCLUDE_TESTS", "OFF");
+           .define("LLVM_INCLUDE_TESTS", "ON");
 
         cfg.build();
 
