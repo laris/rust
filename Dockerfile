@@ -13,12 +13,6 @@ ADD . /code
 # RUN cd /code
 RUN mkdir /build && cd /build
 
-# symlink Rust build directory to the /build volume
-# RUN mkdir /build && ln -sf /build /code/build
-
-# Compile rust.
-# RUN /code/x.py build
-
 # Generate Makefile using settings suitable for an experimental compiler
 RUN /code/configure \
     --enable-debug \
