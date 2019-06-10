@@ -39,6 +39,7 @@ RUN ln -sf /build/x86_64-unknown-linux-gnu/llvm/ /build/llvm
 USER rustacean
 
 RUN cargo install xargo
+ENV XARGO_RUST_SRC="/code/src"
 
 ENV PATH="/home/rustacean/.cargo/bin:${PATH}"
 
