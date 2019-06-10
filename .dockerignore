@@ -1,2 +1,3 @@
 /build/
 /Dockerfile # Don't trigger lots of rebuilds when editing
+.git
