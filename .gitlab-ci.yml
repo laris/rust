@@ -36,5 +36,5 @@
    script:
      - git clone https://github.com/avr-rust/blink.git
      # Compile the blink example in release mode.
-     - docker run -v ./blink:/blink-src -w /blink-src avr-rust xargo build --target avr-atmega328p --release
+     - docker run -v $(pwd)/blink:/blink-src -e RUST_TARGET_PATH=/blink-src -w /blink-src avr-rust xargo build --target avr-atmega328p --release
 
