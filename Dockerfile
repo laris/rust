@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 USER root
 
 # Install dependencies.
-RUN apt-get update -y && apt-get install -y build-essential cmake curl git python cargo
+RUN apt-get update -y && apt-get install -y build-essential cmake curl git python cargo gcc-avr binutils-avr avr-libc
 
 # Create a regular user.
 RUN useradd -m rustacean
