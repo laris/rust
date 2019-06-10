@@ -40,4 +40,6 @@ USER rustacean
 
 RUN cargo install xargo
 
+RUN echo 'export PATH=$HOME/.cargo/bin:$PATH' >> $HOME/.profile
+
 VOLUME /code
