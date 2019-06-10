@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 USER root
 
 # Install dependencies.
-RUN apt-get update && apt-get install -y build-essential cmake curl git python
+RUN apt-get update -y && apt-get install -y build-essential cmake curl git python cargo
 
 # Create a regular user.
 RUN useradd -m rustacean
@@ -31,6 +31,9 @@ RUN /code/configure \
 
 RUN make
 RUN make install
+
+# Symlink the LLVM build directory to /build/llvm
+RUN ln -sf /build/x86_64-unknown-linux-gnu/llvm/ /build/llvm
 
 # Drop down to the regular user
 USER rustacean
