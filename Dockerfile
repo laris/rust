@@ -41,4 +41,3 @@ USER rustacean
 RUN cargo install xargo
 
 VOLUME /code
-VOLUME /build
