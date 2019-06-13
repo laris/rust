@@ -9,12 +9,16 @@
  build:
    stage: build
    script:
+     # <FIXME: move into 'test' stage>
+     # Clone source code of the blink repository.
+     - docker pull ubuntu
+     - docker run -v $(pwd):/hostpwd -w /hostpwd ubuntu bash -c "apt-get update -y; apt-get install -y git; git clone https://github.com/avr-rust/blink.git; chown -R :1000 /hostpwd/blink; chmod -R 777 /hostpwd/blink"
+     # </FIXME: move into 'test' stage>
+
      - docker build -t avr-rust .
 
      # <FIXME: move into 'test' stage>
-     # Clone source code of the blink repository.
-     - docker run -v $(pwd):/hostpwd -w /hostpwd avr-rust git clone https://github.com/avr-rust/blink.git
-     # Compile the blink example in release mode.
+     # Compile the blifnk example in release mode.
      - docker run -v $(pwd)/blink:/blink-src -e RUST_TARGET_PATH=/blink-src -w /blink-src avr-rust xargo build --target avr-atmega328p --release
      # </FIXME: move into 'test' stage>
 
